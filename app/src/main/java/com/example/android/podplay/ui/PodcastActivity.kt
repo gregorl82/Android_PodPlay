@@ -11,6 +11,8 @@ import com.example.android.podplay.R
 import com.example.android.podplay.repository.ItunesRepo
 import com.example.android.podplay.service.ItunesService
 
+import kotlinx.android.synthetic.main.activity_podcast.*
+
 class PodcastActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,7 +25,9 @@ class PodcastActivity : AppCompatActivity() {
 
         val itunesRepo = ItunesRepo(itunesService)
 
-        itunesRepo.searchByTerm("Android Developer", {Log.i(TAG, "Results = $it")})
+        itunesRepo.searchByTerm("Android Developer", { Log.i(TAG, "Results = $it") })
+
+        setupToolbar()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -38,5 +42,9 @@ class PodcastActivity : AppCompatActivity() {
         searchView.setSearchableInfo(searchManager.getSearchableInfo(componentName))
 
         return true
+    }
+
+    private fun setupToolbar() {
+        setSupportActionBar(toolbar)
     }
 }
